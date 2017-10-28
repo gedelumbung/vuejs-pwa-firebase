@@ -26,7 +26,7 @@ export default {
   data () {
     return {
       'url': null,
-      'title': ''
+      'title': null
     }
   },
   mounted () {
@@ -36,14 +36,18 @@ export default {
   },
   methods: {
     storePeople () {
-      this.$root.$firebaseRefs.peoples.push(
-        {
-          'url': this.url,
-          'comment': this.title,
-          'info': 'Posted by OnaniMous',
-          'created_at': -1 * new Date().getTime()
-        })
-        .then(this.$router.push('/'))
+      if (this.title == null) {
+        alert('Please, dont leave me without name :(')
+      } else {
+        this.$root.$firebaseRefs.peoples.push(
+          {
+            'url': this.url,
+            'title': this.title,
+            'info': 'Posted by OnaniMous',
+            'created_at': -1 * new Date().getTime()
+          })
+          .then(this.$router.push('/'))
+      }
     }
   }
 }

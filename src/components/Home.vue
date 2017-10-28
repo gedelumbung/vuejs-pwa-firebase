@@ -3,11 +3,12 @@
     <div class="mdl-grid">
       <div v-for="(people, id) in getPeoples()" class="mdl-cell mdl-cell--3-col mdl-cell--12-col-phone image-card">
         <div>
-          <div v-if="people.url !== '' && people.comment !==''" class="image-card__picture">
+          <div class="image-card__picture">
             <img :src="people.url" />
           </div>
           <div class="image-card__comment mdl-card__actions">
-            <span>{{ people.comment }}</span>
+            <div>{{ people.title }}</div>
+            <span>{{ people.info }}</span>
           </div>
         </div>
       </div>
@@ -35,15 +36,19 @@
   .image-card__comment {
     position: absolute;
     bottom: 0;
-    height: 52px;
+    height: 62px;
     padding: 16px;
     text-align: right;
     background: rgba(0, 0, 0, 0.5);
   }
+  .image-card__comment > div {
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+  }
   .image-card__comment > span {
     color: #fff;
-    font-size: 14px;
-    font-weight: bold;
+    font-size: 12px;
   }
 </style>
 <script>
@@ -56,7 +61,7 @@
           return reduce(this.$root.peoples, (people, firebaseEntry) => {
             people[firebaseEntry['.key']] = {
               url: firebaseEntry['url'],
-              comment: firebaseEntry['comment'],
+              title: firebaseEntry['title'],
               info: firebaseEntry['info'],
               created_at: firebaseEntry['created_at']
             }
