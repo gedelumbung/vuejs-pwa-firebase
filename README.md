@@ -1,7 +1,9 @@
 # vuejs-pwa-firebase
 Simple PWA Apps with VueJS &amp; Firebase
 
-> A Vue.js project
+## Demo Site
+
+https://cartoonist-parrot-60631.netlify.com/#/
 
 ## Build Setup
 
